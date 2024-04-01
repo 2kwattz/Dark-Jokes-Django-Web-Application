@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        ul,
+        li {
+            list-style-type: none;
+        }
+
+        .btn-wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .jokes-wrapper {
+           
+            
+        }
+        .jokes-container{
+           
+        }
+    </style>
+    <title>Your Daily Jokes</title>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h2 class="text-center mb-4">I Love Jokes </h2>
+                <div>
+                    <div class="btn-wrapper d-flex flex-row justify-content-center">
+                        <form class="form-horizontal" action="jokes" method="POST">
+                            
+                                                {% csrf_token %}
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="email">Jokes Limit :</label>
+                                <div class="col-sm-10">
+                                  <input type="number" name="jokesLimit" class="form-control" id="limit" placeholder="Enter Jokes Limit ">
+                                </div>
+                              </div>
+                            <button class="btn p-4 bg-primary" name="showJokes" type="submit"> Show Jokes</button>
+                        </form>
+                    </div>
+
+                    <div class="jokes-wrapper d-flex flex-row flex-wrap w-100 justify-content-center">
+
+                        {% for joke in jokesData.jokes %}
+                        <ul class="jokes-container d-flex flex-wrap p-2 bg-grey text-white ">
+                            <li>{{ joke.setup }}</li>
+                            <li>{{ joke.delivery }}</li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+    </div>
+
+</body>
+
+</html>
